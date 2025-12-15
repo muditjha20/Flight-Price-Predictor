@@ -39,7 +39,7 @@ window.addEventListener('DOMContentLoaded', () => {
 // Check if the API is accessible
 async function checkAPIStatus() {
     try {
-        const response = await fetch(API_BASE_URL);
+        const response = await fetch(API_BASE_URL + "/health");
         if (response.ok) {
             apiStatusEl.textContent = 'Connected';
             apiStatusEl.className = 'status-ok';
