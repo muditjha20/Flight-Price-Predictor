@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyPrice | Flight Price Predictor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-plane-departure"></i>
+                <h1>SkyPrice</h1>
+            </div>
+            <p class="tagline">Intelligent Flight Price Prediction</p>
+        </header>
+
+        <main class="main-content">
+            <div class="info-card">
+                <div class="card-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <p>Our AI model analyzes flight data to predict the most accurate price for your journey. Fill in the details below and get an instant estimate.</p>
+                <p class="api-status">API Status: <span id="api-status" class="status-ok">Connected</span></p>
+            </div>
+
+            <div class="card form-card">
+                <h2><i class="fas fa-edit"></i> Flight Details</h2>
+                <form id="prediction-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="Airline"><i class="fas fa-plane"></i> Airline</label>
+                            <select id="Airline" name="Airline" required>
+                                <option value="" disabled selected>Select Airline</option>
+                                <option value="IndiGo">IndiGo</option>
+                                <option value="Air India">Air India</option>
+                                <option value="Jet Airways">Jet Airways</option>
+                                <option value="SpiceJet">SpiceJet</option>
+                                <option value="Vistara">Vistara</option>
+                                <option value="GoAir">GoAir</option>
+                                <option value="Air Asia">Air Asia</option>
+                                <option value="Multiple carriers">Multiple carriers</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Source"><i class="fas fa-map-marker-alt"></i> Source City</label>
+                            <select id="Source" name="Source" required>
+                                <option value="" disabled selected>Select Source City</option>
+                                <option value="Banglore">Bangalore</option>
+                                <option value="Kolkata">Kolkata</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Chennai">Chennai</option>
+                                <option value="Mumbai">Mumbai</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Destination"><i class="fas fa-map-marker-alt"></i> Destination City</label>
+                            <select id="Destination" name="Destination" required>
+                                <option value="" disabled selected>Select Destination City</option>
+                                <option value="New Delhi">New Delhi</option>
+                                <option value="Banglore">Bangalore</option>
+                                <option value="Kolkata">Kolkata</option>
+                                <option value="Cochin">Cochin</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Delhi">Delhi</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="Route"><i class="fas fa-route"></i> Route</label>
+                            <input type="text" id="Route" name="Route" placeholder="e.g., BLR → DEL" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Date_of_Journey"><i class="far fa-calendar-alt"></i> Date of Journey</label>
+                            <input type="date" id="Date_of_Journey" name="Date_of_Journey" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="Dep_Time"><i class="far fa-clock"></i> Departure Time</label>
+                            <input type="time" id="Dep_Time" name="Dep_Time" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Arrival_Time"><i class="far fa-clock"></i> Arrival Time</label>
+                            <input type="time" id="Arrival_Time" name="Arrival_Time" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Duration"><i class="fas fa-hourglass-half"></i> Duration</label>
+                            <input type="text" id="Duration" name="Duration" placeholder="e.g., 2h 50m" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="Total_Stops"><i class="fas fa-stop-circle"></i> Total Stops</label>
+                            <select id="Total_Stops" name="Total_Stops" required>
+                                <option value="" disabled selected>Select Stops</option>
+                                <option value="non-stop">Non-stop</option>
+                                <option value="1 stop">1 Stop</option>
+                                <option value="2 stops">2 Stops</option>
+                                <option value="3 stops">3 Stops</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Additional_Info"><i class="fas fa-info-circle"></i> Additional Info</label>
+                            <select id="Additional_Info" name="Additional_Info" required>
+                                <option value="" disabled selected>Select Additional Info</option>
+                                <option value="No info">No info</option>
+                                <option value="In-flight meal not included">In-flight meal not included</option>
+                                <option value="No check-in baggage included">No check-in baggage included</option>
+                                <option value="1 Long layover">1 Long layover</option>
+                                <option value="Change airports">Change airports</option>
+                                <option value="Red-eye flight">Red-eye flight</option>
+                                <option value="Business class">Business class</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="button" id="load-sample-btn" class="btn secondary">
+                            <i class="fas fa-vial"></i> Load Sample Data
+                        </button>
+                        <button type="submit" id="predict-btn" class="btn primary">
+                            <i class="fas fa-rocket"></i> Predict Flight Price
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card result-card hidden">
+                <div class="result-header">
+                    <h2><i class="fas fa-chart-line"></i> Price Prediction</h2>
+                    <button id="reset-btn" class="btn icon-btn">
+                        <i class="fas fa-redo"></i>
+                    </button>
+                </div>
+                
+                <div class="result-content">
+                    <div class="loading-spinner hidden" id="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Analyzing flight data...</p>
+                    </div>
+                    
+                    <div class="prediction-result hidden" id="prediction-result">
+                        <div class="price-display">
+                            <div class="price-label">Estimated Flight Price</div>
+                            <div class="price-value">₹<span id="predicted-price">0</span></div>
+                            <div class="price-note">Inclusive of all taxes and fees</div>
+                        </div>
+                        
+                        <div class="result-details">
+                            <h3><i class="fas fa-info-circle"></i> Flight Summary</h3>
+                            <div class="details-grid" id="flight-summary"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="error-message hidden" id="error-message">
+                        <div class="error-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3>Prediction Failed</h3>
+                        <p id="error-text">There was an error processing your request. Please try again.</p>
+                        <button id="retry-btn" class="btn primary">
+                            <i class="fas fa-sync-alt"></i> Try Again
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>SkyPrice Flight Predictor © 2023 | Powered by AI Models</p>
+            <p class="disclaimer">Predictions are estimates based on historical data and may not reflect actual prices.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
