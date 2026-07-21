@@ -132,10 +132,17 @@ predictionForm.addEventListener('submit', async (e) => {
         // Show success notification
         showNotification('Price prediction completed!', 'success');
     } catch (error) {
-        // Show error
-        showErrorState(error.message);
-        console.error('Prediction error:', error);
-    }
+    const isNetworkError =
+        error instanceof TypeError &&
+        error.message === 'Failed to fetch';
+
+    const message = isNetworkError
+        ? 'The prediction service could not be reached from this network. Some corporate networks may block external API requests. Please try another network or VPN.'
+        : error.message;
+
+    showErrorState(message);
+    console.error('Prediction error:', error);
+}
 });
 
 // Validate form inputs
